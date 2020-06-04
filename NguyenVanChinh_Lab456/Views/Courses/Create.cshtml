@@ -1,4 +1,4 @@
-﻿@model NguyenVanChinh_Lab456.Models.Course
+﻿@model NguyenVanChinh_Lab456.ViewModels.CourseViewModel
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +8,19 @@
 
 <form>
     <div class="form-group">
-        @Html.LabelFor(m=>m.Place)
-        @Html.TextBoxFor(m => m.Place, new {@class = "form-control"})
+        @Html.LabelFor(m => m.Place)
+        @Html.TextBoxFor(m => m.Place, new { @class = "form-control" })
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Date)
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Time)
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+    </div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
 </form>
