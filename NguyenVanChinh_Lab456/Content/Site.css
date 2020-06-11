@@ -49,7 +49,7 @@ textarea {
     background-color: #d41d50;
     color: white;
     width: 60px;
-    border-radius: 8px;
+    border-radius: 70px;
 }
 
 .course > li .details {
@@ -57,4 +57,3 @@ textarea {
     top: 0;
     left: 70px;
 }
-
