@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Routing;
 using Microsoft.AspNet.Identity;
+using NguyenVanChinh_Lab456.DTOs;
 using NguyenVanChinh_Lab456.Models;
 
 namespace NguyenVanChinh_Lab456.Controllers
@@ -21,16 +22,16 @@ namespace NguyenVanChinh_Lab456.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Attend([FromBody] int courseId)
+        public IHttpActionResult Attend(AttendanceDto attendanceDto)
         {
             var userId = User.Identity.GetUserId();
-            if (_dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == courseId))
+            if (_dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == attendanceDto.CourseId))
             {
                 return BadRequest("The Attendance already exists!");
             }
             var attendance = new Attendance
             {
-                CourseId = courseId,
+                CourseId = attendanceDto.CourseId,
                 AttendeeId = userId
 
             };

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NguyenVanChinh_Lab456.Models;
+using NguyenVanChinh_Lab456.ViewModels;
 
 namespace NguyenVanChinh_Lab456.Controllers
 {
@@ -22,7 +23,7 @@ namespace NguyenVanChinh_Lab456.Controllers
             var upcommingCourses = _dbContext.Courses
                 .Include(c => c.Lecturer)
                 .Include(c => c.Category)
-                .Where(c => c.DateTime > DateTime.Now).ToList();
+                .Where(c => c.DateTime > DateTime.Now);
             return View(upcommingCourses);
         }
 
