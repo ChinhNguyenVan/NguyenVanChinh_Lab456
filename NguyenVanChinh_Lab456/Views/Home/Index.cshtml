@@ -1,12 +1,12 @@
-﻿@model IEnumerable<NguyenVanChinh_Lab456.Models.Course>
-    
+﻿@model NguyenVanChinh_Lab456.ViewModels.CourseViewModel
+
 @{
     ViewBag.Title = "Home Page";
 }
 
 <div class="row">
     <ul class="course">
-        @foreach (var course in Model)
+        @foreach (var course in Model.UpcommingCourses)
         {
             <li>
                 <div class="date">
@@ -17,16 +17,24 @@
                         @course.DateTime.ToString("dd")
                     </div>
                 </div>
-                
+
                 <div class="details">
                     <span class="lecturer">
                         @course.Lecturer.Name
-                        <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturedId">Follow</button>
+                        @if (Model.ShowAction)
+                        {
+                            <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturedId">Follow</button>
+                        }
+
                     </span>
                     <span class="category">
                         @course.Category.Name
-                    </span> 
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                    </span>
+                    @if (Model.ShowAction)
+                    {
+                        <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                    }
+
                 </div>
             </li>
         }
@@ -34,17 +42,17 @@
     @section scripts
     {
         <script>
-            $(document).ready(function() {
-                $(".js-toggle-attendance").click(function(e) {
+            $(document).ready(function () {
+                $(".js-toggle-attendance").click(function (e) {
                     var button = $(e.target);
                     $.post("/api/attendances", { coursedId: button.attr("data-course-id") })
-                        .done(function() {
+                        .done(function () {
                             button
                                 .removeClass("btn-default")
                                 .addClass("btn-info")
                                 .text("Going");
                         })
-                        .fail(function() {
+                        .fail(function () {
                             alert("Something failed");
                         });
                 });
