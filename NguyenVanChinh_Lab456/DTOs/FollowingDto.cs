@@ -7,6 +7,6 @@ namespace NguyenVanChinh_Lab456.DTOs
 {
     public class FollowingDto
     {
-        public string FoloweeId { get; set; }
+        public string FolloweeId { get; set; }
     }
 }
