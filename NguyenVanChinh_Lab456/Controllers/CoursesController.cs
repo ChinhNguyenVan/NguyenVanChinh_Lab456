@@ -72,7 +72,7 @@ namespace NguyenVanChinh_Lab456.Controllers
         {
             var userId = User.Identity.GetUserId();
             var courses = _dbContext.Courses
-                .Where(c=>c.LecturedId == userId && c.DateTime > DateTime.Now)
+                .Where(c=>c.LecturedId == userId && c.DateTime > DateTime.Now && !c.IsCanceled)
                 .Include(l=>l.Lecturer)
                 .Include(c=>c.Category)
                 .ToList();
